@@ -1,0 +1,42 @@
+{%  load  staticfiles  %}
+<!DOCTYPE html>
+<html >
+<head><meta charset="UTF-8">
+<link  rel="stylesheet"  href="{%  static  "style/base.css"  %}"  />
+</head>
+
+
+<body id="body-login">
+	<div class="login">
+		<div class="login-screen">
+			<div class="app-title">
+				<h1>Book Login</h1>
+			</div>
+
+			<div class="login-form">
+				<form method="post" action="{% url 'login' %}">
+                    <table>
+                        <tr>
+                            <td>{{ form.username.label_tag }}</td>
+                            <td>{{ form.username }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ form.password.label_tag }}</td>
+                            <td>{{ form.password }}</td>
+                        </tr>
+                        <tr>
+                            <td><input type="hidden" name="next" value="{{ next }}"/></td>
+                        </tr>
+                    </table>
+
+                    <input id="button-login" type="submit" value="LOGIN" />
+                    {% if form.errors %}
+                        <p>Your username and password didn't match. Please try again.</p>
+                    {% endif %}
+                    {% csrf_token %}
+                </form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
